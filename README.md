@@ -1,3 +1,13 @@
+**Data structure**
+    data: chan x time x class x trial
+    state: Hz
+    chan_locs: channel name (cell-str)
+    window: epoch length (ms)
+    freq: stimuli frequencies (Hz)
+    phase: stimuli phase
+    subj: num of subject (str)
+
+
 Method 
 1. **Standard CCA**
     Hakvoort, G., Reuderink, B. & Obbink, M. Comparison of PSDA and CCA detection methods in a SSVEP-based BCI-system. (2011).
