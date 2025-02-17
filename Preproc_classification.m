@@ -72,7 +72,7 @@ switch (input_param.method)
     
     case 'stdCCA'
         time = input_param.window_len(1)/1000:1/eeg.srate:input_param.window_len(end)/1000;
-        time = floor(time);
+        %time = floor(time);
         time(end) = [];
         
         for har_idx = 1: input_param.harmonics
@@ -86,7 +86,7 @@ switch (input_param.method)
         
     case 'FBCCA'
         time = input_param.window_len(1)/1000:1/eeg.srate:input_param.window_len(end)/1000;
-        time = floor(time);
+       % time = floor(time);
         time(end) = [];
         
         for har_idx = 1: input_param.harmonics
