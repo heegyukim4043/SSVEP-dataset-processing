@@ -44,7 +44,7 @@ switch input_param.method
         
     case 'ITCCA'
         
-        input_param.fold = 5;
+        input_param.fold = 5;  % fold 6 -> train: test = 5: 1, fold 5 -> train: test = 4: 2
         input_param.filter = [13 22*input_param.harmonics+1];
         
     case 'TRCA'
