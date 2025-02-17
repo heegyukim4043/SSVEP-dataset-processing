@@ -32,7 +32,8 @@
 
 
 
-Method 
+**Method **
+
 1. **Standard CCA**
     Hakvoort, G., Reuderink, B. & Obbink, M. Comparison of PSDA and CCA detection methods in a SSVEP-based BCI-system. (2011).
 2. **Filter bank CCA**
@@ -42,7 +43,7 @@ Method
 4. **Task-related component analysis-based filter**
   	Nakanishi, M. et al. Enhancing Detection of SSVEPs for a High-Speed Brain Speller Using Task-Related Component Analysis. IEEE Trans. Biomed. Eng. 65, 104–112 (2018)
 
-**Matlab toolbox **
+**Matlab toolbox**
 
 1. EEGLAB toolbox: ver. 2022.0
 URL: https://sccn.ucsd.edu/eeglab/download.php
