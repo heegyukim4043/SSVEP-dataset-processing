@@ -1,4 +1,4 @@
-**Data structure**
+** SSVEP Data structure**
 
     data: chan x time x class x trial
     
@@ -13,6 +13,16 @@
     phase: stimuli phase
     
     subj: num of subject (str)
+
+**Rest data structure**
+
+    dat_a: chan x time x trial
+
+    resting: pre or post, eye open and eye closed (str)
+    
+    state: Hz
+    
+    chan_locs: channel name (cell-str)
 
 **Results**
 
