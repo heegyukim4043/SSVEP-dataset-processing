@@ -14,6 +14,23 @@
     
     subj: num of subject (str)
 
+**Results**
+
+    Method: classifier (str)
+    
+    Window len: [a b] (ms)
+    
+    chan: selected chan (cell-str)
+
+    acc: N-vector (each fold) 
+
+    itr: N-vector (each fold) 
+
+    filter: band pass filter range (Hz)
+
+    fold: N
+
+
 
 Method 
 1. **Standard CCA**
