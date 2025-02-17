@@ -1,10 +1,17 @@
 **Data structure**
+
     data: chan x time x class x trial
+    
     state: Hz
+    
     chan_locs: channel name (cell-str)
+    
     window: epoch length (ms)
+    
     freq: stimuli frequencies (Hz)
+    
     phase: stimuli phase
+    
     subj: num of subject (str)
 
 
