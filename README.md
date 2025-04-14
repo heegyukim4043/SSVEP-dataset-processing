@@ -1,4 +1,7 @@
-** SSVEP Data structure**
+**Data avaliable**
+Please check the Link in REST_data and SSVEP_data folder
+
+**SSVEP Data structure**
 
     data: chan x time x class x trial
     
