@@ -53,7 +53,7 @@ Please check the path as the 'path_dataset' and 'save_path' variables in the ini
 **Performance Validation Method**
 
 1. **Standard CCA**
-    Hakvoort, G., Reuderink, B. & Obbink, M. Comparison of PSDA and CCA detection methods in a SSVEP-based BCI-system. (2011).
+    Lin, Z., Zhang, C., Wu, W. & Gao, X. Frequency Recognition Based on Canonical Correlation Analysis for SSVEP-Based BCIs. IEEE Trans. Biomed. Eng. 53, 2610–2614 (2006).
 2. **Filter bank CCA**
     Chen, X., Wang, Y., Gao, S., Jung, T.-P. & Gao, X. Filter bank canonical correlation analysis for implementing a high-speed SSVEP-based brain–computer interface. J. Neural Eng. 12, 046008 (2015).
 3. **Combined individual template CCA**
