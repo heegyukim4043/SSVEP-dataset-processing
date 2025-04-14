@@ -10,7 +10,7 @@ Please check the path as the 'path_dataset' and 'save_path' variables in the ini
 
     data: chan x time x class x trial
     
-    state: Hz
+    srate: sampling rate (Hz)
     
     chan_locs: channel name (cell-str)
     
@@ -24,11 +24,11 @@ Please check the path as the 'path_dataset' and 'save_path' variables in the ini
 
 **Rest data structure**
 
-    dat_a: chan x time x trial
+    data: chan x time x trial
 
     resting: pre or post, eye open and eye closed (str)
     
-    state: Hz
+    srate: sampling rate (Hz)
     
     chan_locs: channel name (cell-str)
 
