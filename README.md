@@ -61,7 +61,7 @@ Please check the path as the 'path_dataset' and 'save_path' variables in the ini
 4. **Task-related component analysis-based filter**
   	Nakanishi, M. et al. Enhancing Detection of SSVEPs for a High-Speed Brain Speller Using Task-Related Component Analysis. IEEE Trans. Biomed. Eng. 65, 104–112 (2018)
 
-**Matlab toolbox**
+**Requirements**
 
 1. EEGLAB toolbox: ver. 2022.0
 URL: https://sccn.ucsd.edu/eeglab/download.php
