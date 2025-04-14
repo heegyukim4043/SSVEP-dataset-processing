@@ -17,7 +17,7 @@ save_path = 'results';
 % input_param.method = 'ITCCA';
 % input_param.method = 'TRCA';
 input_param.method = 'CITCCA';
-% 'stdCCA', 'FBCCA', 'ITCCA', 'TRCA'
+% 'stdCCA', 'FBCCA', 'CITCCA', 'TRCA'
 
 %%% common param.
 % channel selection
