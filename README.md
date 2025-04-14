@@ -1,8 +1,8 @@
 **Data avaliable**
-Please check the Link in REST_data and SSVEP_data folder
+Please check the Link in 'REST_data' and 'SSVEP_data' folder
 
 **Usage Notes**
-The main processing is in Preproc_classification.m script.
+The main processing is in 'Preproc_classification.m' script.
 Please check the path as the 'path_dataset' and 'save_path' variables in the init param. session.
 
 **SSVEP Data structure**
