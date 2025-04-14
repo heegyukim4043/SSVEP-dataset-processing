@@ -45,7 +45,7 @@ Please check the Link in REST_data and SSVEP_data folder
 
 
 
-**Method **
+**Performance Validation Method**
 
 1. **Standard CCA**
     Hakvoort, G., Reuderink, B. & Obbink, M. Comparison of PSDA and CCA detection methods in a SSVEP-based BCI-system. (2011).
