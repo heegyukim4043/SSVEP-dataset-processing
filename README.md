@@ -2,6 +2,10 @@
 Please check the Link in 'REST_data' and 'SSVEP_data' folders.
 Due to the large dataset size, it is provided via a third-party platform.
 
+or 
+Please check the link below 
+https://doi.org/10.6084/m9.figshare.28806815.v2
+
 **Usage Notes**
 The main processing is in 'Preproc_classification.m' script.
 Please check the path as the 'path_dataset' and 'save_path' variables in the init param. session.
