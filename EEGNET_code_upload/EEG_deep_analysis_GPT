@@ -1,0 +1,92 @@
+import tensorflow as tf
+import numpy as np
+import matplotlib as mpl
+import scipy.io
+from EEGModels import EEGNet
+from deepexplain.tensorflow import DeepExplain
+from sklearn.model_selection import KFold
+import os
+
+tf.compat.v1.disable_eager_execution()
+
+from tensorflow.compat.v1.keras import Model
+from tensorflow.compat.v1.keras import utils 
+from tensorflow.compat.v1.keras.callbacks import ModelCheckpoint
+
+# Define the cross-validation folds
+kfold = KFold(n_splits=10, shuffle=True, random_state=42)
+kernels, chans, samples = 1, 32, 512
+result_path = './result/chat_gpt_cold_5fold' #'./result_512_bi_CH'
+
+if not os.path.isdir(result_path):
+    os.mkdir(result_path)
+
+
+for subject_idx in range(1, 2):
+    print(f"Training and explaining for subject {subject_idx}")
+    dat_name = (".\data_deep\gpt_cold\subject%02d_data.mat" %(subject_idx))
+    seq_name = ('.\data_deep\gpt_cold\subject%02d_label.mat' %(subject_idx))
+    # Load and preprocess the data
+    X = scipy.io.loadmat(dat_name)
+    X = X['data_gpt']
+    y = scipy.io.loadmat(seq_name)
+    y= y['seq_gpt']
+    print(np.shape(X))
+    
+    #X = np.expand_dims(X, axis=3)
+    X = np.transpose(X, (2,0,1))
+    X = np.expand_dims(X, axis = -1)
+    print(np.shape(X))
+    y = np.transpose(y)
+    y = utils.to_categorical(y-1)
+    total_acc = []
+    # Train and evaluate the EEGNet model with cross-validation
+    for fold, (train_idx, test_idx) in enumerate(kfold.split(X, y)):
+        X_train, y_train = X[train_idx], y[train_idx]
+        X_test, y_test = X[test_idx], y[test_idx]
+
+        model = EEGNet(nb_classes = 3, Chans = chans, Samples = samples, dropoutRate = 0.5, 
+                       kernLength= 32, F1 = 8, D =2, F2 = 16, dropoutType = 'Dropout')
+        model.compile(loss='categorical_crossentropy', optimizer = 'adam', metrics = ['acc'])
+        num_Par = model.count_params()
+
+        class_weights = {0:1, 1:1, 2:1}
+        checkpointer = ModelCheckpoint(filepath='./result/chat_gpt_cold_5fold' + str(subject_idx) + 
+                            '.h5', verbose = 0, save_best_only = True)
+        
+        fittedModel = model.fit(X_train, y_train, batch_size = 32, epochs = 300,
+                            verbose=2, validation_data=(X_test, y_test),
+                            callbacks=[checkpointer], class_weight=class_weights)
+            
+        probs = model.predict(X_test)
+        preds = probs.argmax(axis=-1)
+        acc = np.mean(preds == y_test.argmax(axis=-1))
+        print("Classification accuracy: %f " % (acc))
+        total_acc.append(acc)
+        print('total_acc = ', total_acc)
+
+        train_loss_curve = fittedModel.history['loss']
+        val_loss_curve = fittedModel.history['val_loss']
+        train_curve = fittedModel.history['acc']
+        val_curve = fittedModel.history['val_acc']
+
+        X_train = np.concatenate((X_train, X_test), axis=0)
+        y_train = np.concatenate((y_train, y_test), axis=0)
+
+        train_probs = model.predict(X_train)
+        train_preds = train_probs.argmax(axis=-1)
+        train_acc = np.mean(train_preds == y_train.argmax(axis=-1))
+        print("Train Classification accuracy: %f " % (train_acc)) 
+                
+        with DeepExplain(session=tf.compat.v1.keras.backend.get_session()) as de:
+            input_tensor = model.layers[0].input
+            output_tensor = model.layers[-2].output
+            target_tensor = output_tensor[:, 0]  # Explain the model's prediction for class 0
+
+            # Compute the attribution scores using the Gradient*Input method
+            attributions = de.explain('deeplift', target_tensor*y_train, input_tensor, X_train)
+            
+            # Save the attributions to a file
+            scipy.io.savemat('./result/chat_gpt_cold_5fold/Subject' + 
+                             'subject_{subject_idx}_fold_{fold}_attributions' +'.mat',
+                             attributions)
