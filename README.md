@@ -1,4 +1,4 @@
-**Data avaliable**
+**Data available**
 Please check the Link in 'REST_data' and 'SSVEP_data' folders.
 Due to the large dataset size, it is provided via a third-party platform.
 
